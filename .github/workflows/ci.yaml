@@ -44,14 +44,6 @@ jobs:
       - run: yarn add prisma@${{ matrix.prisma-version }}
       - run: yarn lint
       - run: yarn build
-
-      - name: Generate1
-        if: ${{ matrix.prisma-version == '4.9.0' }}
-        run: yarn prisma generate --generator clientExtensions
-
-      - name: Generate2
-        if: ${{ matrix.prisma-version == '4.16.0' || matrix.prisma-version == 'latest' }}
-        run: yarn prisma generate
-
+      - run: yarn prisma generate
       - run: yarn prisma db push
       - run: yarn test
