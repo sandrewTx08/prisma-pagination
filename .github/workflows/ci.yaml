@@ -46,11 +46,11 @@ jobs:
       - run: yarn build
 
       - name: Generate1
-        if: ${{ matrix.prisma-version < 4.16.0 }}
+        if: ${{ matrix.prisma-version == "4.9.0" }}
         run: prisma generate --generator clientExtensions
 
       - name: Generate2
-        if: ${{ matrix.prisma-version >= 4.16.0 }}
+        if: ${{ matrix.prisma-version == "4.16.0" || matrix.prisma-version == "latest" }}
         run: prisma generate
 
       - run: yarn prisma db push
